@@ -1,8 +1,11 @@
-using CSTG;
+using CSTG.Models.Linguists;
+using CSTG.Models.ProjectFilesManager;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NeoSimpleLogger;
+
+namespace CSTG.Servises;
 
 public class DI
 {
@@ -15,6 +18,7 @@ public class DI
         {
             services.AddSingleton<ILogger, Logger>();
             services.AddTransient<IProjectFilesManager, ProjectFilesManager>();
+            services.AddTransient<IConfigFileLinguist, ConfigFileLinguist>();
         }).ConfigureLogging(log =>
         {
             log.ClearProviders();
