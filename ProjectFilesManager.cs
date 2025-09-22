@@ -1,9 +1,10 @@
 using System.Text.RegularExpressions;
 using CSTG.ConfigVariable;
+using Microsoft.Extensions.Logging;
 
 namespace CSTG;
 
-public class ProjectFilesManager
+public class ProjectFilesManager() : IProjectFilesManager
 {
     private static string ProjectConfigExtention => ".cstg_cfg";
 
@@ -45,4 +46,9 @@ public class ProjectFilesManager
 
     private static bool IsVariableType(string name) =>
         Enum.GetValues<VariableTypes>().Any(type => type.ToString() == name);
+}
+
+public interface IProjectFilesManager
+{
+    
 }

@@ -1,9 +1,13 @@
-﻿namespace CSTG;
+﻿using Microsoft.Extensions.Logging;
+
+namespace CSTG;
 
 internal static class Program
 {
+    private static DI _di = new();
+
     private static void Main(string[] args)
     {
-        new ProjectFilesManager().Init("Test project");
+        _di.Init();
     }
 }
