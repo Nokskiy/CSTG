@@ -4,7 +4,7 @@ namespace CSTG.Models.Linguists;
 
 public interface IConfigFileLinguist
 {
-    string MakeVariable(VariableTypes type, string value);
+    string CreateVariable(VariableTypes type, string value);
     Variable ReadVariable(string text);
     bool IsVariableType(string name);
 }

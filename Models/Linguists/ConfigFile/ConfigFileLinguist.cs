@@ -8,8 +8,8 @@ public class ConfigFileLinguist(ILogger logger) : IConfigFileLinguist
 {
     private ILogger Logger => logger;
     
-    public string MakeVariable(VariableTypes type, string value) =>
-        type + ":" + value;
+    public string CreateVariable(VariableTypes type, string value) =>
+        type + "=" + value;
     
     public Variable ReadVariable(string text)
     {

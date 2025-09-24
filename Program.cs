@@ -7,11 +7,12 @@ namespace CSTG;
 
 internal static class Program
 {
-    private static DI _di = new();
+    private static readonly DI Di = new();
 
     private static void Main(string[] args)
     {
-        _di.Init();
-        new ProjectFilesManager(_di.GetService<ILogger>(),_di.GetService<IConfigFileLinguist>()).Init("Test project");
+        Di.Init();
+        //new ProjectFilesManager(Di.GetService<ILogger>(),Di.GetService<IConfigFileLinguist>()).Init("TestProject");
+        new ProjectFilesManager(Di.GetService<ILogger>(),Di.GetService<IConfigFileLinguist>()).Compile();
     }
 }
