@@ -13,6 +13,7 @@ internal static class Program
     {
         Di.Init();
         //new ProjectFilesManager(Di.GetService<ILogger>(),Di.GetService<IConfigFileLinguist>()).Init("TestProject");
-        new ProjectFilesManager(Di.GetService<ILogger>(),Di.GetService<IConfigFileLinguist>()).Compile();
+        var projectFilesManager = new ProjectFilesManager(Di.GetService<ILogger>(),Di.GetService<IConfigFileLinguist>());
+        projectFilesManager.Compile();
     }
 }
