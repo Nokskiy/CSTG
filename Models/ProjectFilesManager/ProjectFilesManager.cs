@@ -6,13 +6,14 @@ using VariableTypes = CSTG.ConfigVariable.VariableTypes;
 
 namespace CSTG.Models.ProjectFilesManager;
 
-public class ProjectFilesManager(ILogger logger, IConfigFileLinguist linguist) : IProjectFilesManager
+public class ProjectFilesManager(ILogger logger, IConfigFileLinguist linguist, IScriptCompilator scriptCompilator) : IProjectFilesManager
 {
-    private IConfigFileLinguist Linguist => linguist;
     private ILogger Logger => logger;
+    private IConfigFileLinguist Linguist => linguist;
+    private IScriptCompilator ScriptCompilator => scriptCompilator;
     private static string ProjectConfigExtension => ".cstg_cfg";
-    private static readonly string InputFilesPath = Path.Combine(Environment.CurrentDirectory, "input");
-    private static readonly string OutputFilesPath = Path.Combine(Environment.CurrentDirectory, "output");
+    public static readonly string InputFilesPath = Path.Combine(Environment.CurrentDirectory, "input");
+    public static readonly string OutputFilesPath = Path.Combine(Environment.CurrentDirectory, "output");
 
     public void Init(string name)
     {
@@ -26,8 +27,6 @@ public class ProjectFilesManager(ILogger logger, IConfigFileLinguist linguist) :
     public void Compile()
     {
         foreach (var file in Directory.GetFiles(InputFilesPath))
-        {
-            new ScriptCompilator(Logger, OutputFilesPath).Compilate(file);
-        }
+            ScriptCompilator.Compilate(file);
     }
 }
